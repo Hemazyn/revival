@@ -98,7 +98,7 @@ To get a local copy up and running, follow these steps:
 git clone https://github.com/Hemazyn/revival.git
 
 # Navigate to the project folder
-cd revival-center-intl
+cd revival-main
 
 # Install dependencies
 npm install
