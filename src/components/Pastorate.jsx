@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, SocialIcons } from "../components";
 import { FiArrowUpRight } from "react-icons/fi";
 import { infoBg } from '../assets';
@@ -20,7 +19,7 @@ const Pastorate = () => {
                                    <div className="flex flex-row gap-2 items-center">
                                         <SocialIcons color="black" size={24} className="hover:scale-110 transition" platforms={['facebook', 'twitter', 'instagram', 'tiktok']} /> - <span className="capitalize font-lato">pastor femi salawu</span>
                                    </div>
-                                   <Button label="Get Involved" onClick={() => console.log("Clicked")} bgColor="bg-blue-800" textColor="text-white" hoverBg="bg-black" iconBg="bg-white" iconColor="text-blue-800" />
+                                   <Button label="Know more" onClick={() => console.log("Clicked")} bgColor="bg-blue-800" textColor="text-white" hoverBg="bg-black" iconBg="bg-white" iconColor="text-blue-800" />
                               </div>
                          </div>
                          <div className="flex items-center w-full lg:w-1/2">

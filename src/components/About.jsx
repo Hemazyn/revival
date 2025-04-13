@@ -1,4 +1,3 @@
-import React from 'react';
 import { infoBg } from '../assets';
 import { FaPeopleGroup, FaPersonPraying } from "react-icons/fa6";
 import { FaPrayingHands, FaSadCry } from "react-icons/fa";

@@ -1,4 +1,3 @@
-import React from 'react';
 import { programList } from '../constants';
 
 const Programs = () => {

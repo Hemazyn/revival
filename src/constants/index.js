@@ -4,7 +4,6 @@ import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { FaXTwitter } from "react-icons/fa6";
 import { cr1, cr2, cr3 } from "../assets";
 
-
 const links = [
      {
           id: 1,
@@ -33,15 +32,11 @@ const links = [
      },
      {
           id: 6,
-          text: "apostolic centers",
-          link: "centers"
-     },
-     {
-          id: 7,
           text: "contact us",
           link: "contact"
      },
 ];
+
 const slides = [
      {
           id: 1,
@@ -62,6 +57,7 @@ const slides = [
           text: "A man that is weak on his ALTAR is weak everywhere else."
      },
 ]
+
 const programList = [
      {
           id: 1,
@@ -100,6 +96,5 @@ const programList = [
           image: 'https://images.unsplash.com/photo-1497032205916-ac775f0649ae?auto=format&fit=crop&w=800&q=60',
      },
 ];
-
 
 export { links, slides, programList };
