@@ -1,56 +1,75 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
-import { scroller } from 'react-scroll';
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { scroller } from "react-scroll";
 import { Logo } from "../components";
 import { links } from "../constants";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const Header = ({ visibleLinks }) => {
-     const [nav, setNav] = useState(false);
+const Header = () => {
+  const [navOpen, setNavOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const desktopVisible = ["home", "gallery", "youth"];
 
-     const filteredLinks = visibleLinks ? links.filter(link => visibleLinks.includes(link.link)) : links;
-     const location = useLocation();
-     const navigate = useNavigate();
+  const handleScrollOrNavigate = (link) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        scroller.scrollTo(link, { smooth: true, duration: 500, offset: -70 });
+      }, 300);
+    } else {
+      scroller.scrollTo(link, { smooth: true, duration: 500, offset: -70 });
+    }
+    setNavOpen(false);
+  };
 
-     const handleScrollOrNavigate = (link) => {
-          if (location.pathname !== '/') {
-               navigate('/');
-               setTimeout(() => {
-                    scroller.scrollTo(link, { smooth: true, duration: 500, offset: -70, });
-               }, 300);
-          } else {
-               scroller.scrollTo(link, { smooth: true, duration: 500, offset: -70 });
-          }
-     };
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 20);
+    };
 
-     return (
-          <div className="flex md:flex-row-reverse justify-between md:justify-around items-center w-full h-20 lg:h-30 px-6 lg:px-12 text-white border-b border-gray-400 absolute z-50 font-lato">
-               <ul className="hidden md:flex">
-                    {filteredLinks.map(({ id, text, link }) => (
-                         <li key={id} className="px-4 text-sm cursor-pointer capitalize font-medium text-white hover:text-blue-800 hover:font-bold hover:scale-105 duration-200">
-                              {link === 'gallery' ? (<RouterLink to={`/${link}`}>{text}</RouterLink>) : (
-                                   <span onClick={() => handleScrollOrNavigate(link)}>{text}</span>
-                              )}
-                         </li>
-                    ))}
-               </ul>
-               <div onClick={() => setNav(!nav)} className="cursor-pointer pr-4 z-10 text-white md:hidden">
-                    {nav ? <FaTimes size={20} /> : <FaBars size={20} />}
-               </div>
-               {nav && (
-                    <ul className="flex flex-col justify-center items-start absolute top-0 pt-20 pb-5 gap-3 left-0 w-3/5 h-fit bg-gradient-to-b from-blue-800 to-gray-800 text-white rounded-br-4xl">
-                         {filteredLinks.map(({ id, text, link }) => (
-                              <li key={id} className="pl-7 cursor-pointer capitalize py-3">
-                                   {link === 'gallery' ? (<RouterLink to={`/${link}`} onClick={() => setNav(!nav)}>{text}</RouterLink>
-                                   ) : (<span onClick={() => { handleScrollOrNavigate(link); setNav(false); }}>  {text}  </span>)}
-                              </li>
-                         ))}
-                    </ul>
-               )}
-               <Logo />
-          </div>
-     );
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header className={`${!hasScrolled ? "fixed top-0" : "relative"} z-50 w-full overflow-hidden border-b border-gray-50 bg-transparent transition-all duration-300`}>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10 lg:px-16">
+        <div className="z-50">
+          <Logo />
+        </div>
+        <ul className="hidden items-center gap-10 md:flex">
+          {links
+            .filter(({ link }) => desktopVisible.includes(link))
+            .map(({ id, text, link }) => (
+              <li key={id} className="cursor-pointer text-sm font-medium text-white uppercase transition-all hover:text-blue-400">
+                {["gallery", "youth"].includes(link) ? <RouterLink to={`/${link}`}>{text}</RouterLink> : <span onClick={() => handleScrollOrNavigate(link)}>{text}</span>}
+              </li>
+            ))}
+        </ul>
+        <div className="z-50 text-white md:hidden" onClick={() => setNavOpen(!navOpen)}>
+          {navOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+      </div>
+      <div className={`bg-opacity-90 fixed top-0 left-0 z-50 h-screen w-full transform bg-gradient-to-br from-blue-900 via-black/80 to-blue-800 px-6 py-6 backdrop-blur-lg transition-transform duration-300 ease-in-out ${navOpen ? "translate-x-0" : "-translate-x-full"} md:hidden`}>
+        <div className="flex justify-end">
+          <button onClick={() => setNavOpen(false)} className="text-2xl font-bold text-white transition hover:text-blue-400">
+            &times;
+          </button>
+        </div>
+        <div className="mt-10 flex flex-col items-start gap-6">
+          {links.map(({ id, text, link }) => (
+            <div key={id} onClick={() => (["gallery", "youth"].includes(link) ? (navigate(`/${link}`), setNavOpen(false)) : handleScrollOrNavigate(link))} className="group relative cursor-pointer text-xl font-semibold tracking-wide text-white uppercase transition hover:text-blue-300">
+              {text}
+              <span className="absolute bottom-[-4px] left-0 h-[2px] w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

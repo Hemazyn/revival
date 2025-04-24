@@ -1,5 +1,9 @@
 {
-     "recommendations": [
-          "edison1105.vite-theme-night"
-     ]
+  "recommendations": ["edison1105.vite-theme-night"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.experimental.classRegex": [
+    "className=\"([^\"]*)\"",
+    "class=\"([^\"]*)\""
+  ]
 }

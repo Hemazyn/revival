@@ -1,42 +1,42 @@
 import { Button, Logo, SocialIcons } from "../components";
-import { FaInstagram } from "react-icons/fa";
 import { FaTelegram, FaLocationCrosshairs, FaMessage } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
 
 const Footer = () => {
-     return (
-          <>
-               <div id="contact" className="w-full bg-black">
-                    <div className="p-5 md:p-10 lg:p-20 flex flex-col divide-y divide-gray-500">
-                         <div className="flex flex-col md:flex-row justify-between pb-10 gap-10 md:gap-0">
-                              <div className="flex flex-col w-full md:w-2/5 lg:w-1/2 gap-7">
-                                   <Logo />
-                                   <p className="text-white text-justify text-base w-full lg:w-2/5">Nigeria Center for World Mission Intl. is a fellowship of Believers in Christ Jesus that have the desire to establish the kingdom of our Lord through intense workings of the Holy Spirit in and through men.</p>
-                                   <SocialIcons color="white" size={24} className="hover:scale-110 transition mr-4 cursor-pointer" platforms={['facebook', 'twitter', 'instagram', 'telegram']} />
-                              </div>
-                              <div className="w-full md:w-2/5 lg:w-1/2 flex flex-col gap-7">
-                                   <h3 className="text-white font-bold font-fira text-2xl">Contact</h3>
-                                   <div className="flex flex-col gap-5">
-                                        <div className="flex flex-row gap-x-5 items-center">
-                                             <IoCall size={20} color="gray" /> <span className="text-white text-sm">+234 801 234 5678</span>
-                                        </div>
-                                        <div className="flex flex-row gap-x-5 items-center">
-                                             <FaMessage size={20} color="gray" /> <span className="text-white text-sm">ncwm@gmail.com</span>
-                                        </div>
-                                        <div className="flex flex-row gap-x-5 items-center">
-                                             <FaLocationCrosshairs size={20} color="gray" /> <span className="text-white text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
-                                        </div>
-                                   </div>
-                                   <a href="#" className="ml-10">
-                                        <Button label="Send Us A Mail" onClick={() => console.log("Clicked")} bgColor="bg-blue-800" textColor="text-white" hoverBg="bg-black" iconBg="bg-white" iconColor="text-blue-800" />
-                                   </a>
-                              </div>
-                         </div>
-                         <p className="text-white font-fira text-sm text-center md:text-start pt-10">Copyright 2025 Nigeria Center for World Mission International. All Rights Reserved.</p>
-                    </div>
-               </div>
-          </>
-     );
+  return (
+    <footer id="contact" className="w-full bg-neutral-900 text-white">
+      <div className="flex flex-col divide-y divide-gray-700 px-6 py-10 md:px-16 lg:px-24">
+        <div className="flex flex-col gap-12 pb-10 md:flex-row md:justify-between">
+          <div className="flex w-full flex-col gap-6 md:w-1/2">
+            <Logo />
+            <p className="text-sm leading-relaxed text-gray-300 lg:max-w-md">Revival Center Intl. is a fellowship of Believers in Christ Jesus that have the desire to establish the kingdom of our Lord through intense workings of the Holy Spirit in and through men.</p>
+            <SocialIcons size={26} className="transition-transform" platforms={["facebook", "twitter", "instagram", "telegram", "tiktok"]} />
+          </div>
+          <div className="flex w-full flex-col gap-6 md:w-1/2">
+            <h3 className="text-xl font-semibold tracking-wide text-white uppercase">Contact</h3>
+            <div className="space-y-4 text-sm text-gray-300">
+              <div className="flex items-center gap-3">
+                <IoCall size={18} className="text-green-400" />
+                <span>+234 801 234 5678</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <FaMessage size={18} className="text-blue-400" />
+                <span>revivalcenter@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <FaLocationCrosshairs size={18} className="text-yellow-400" />
+                <span>Lorem ipsum dolor sit amet, consectetur elit.</span>
+              </div>
+            </div>
+            <div className="pt-4">
+              <Button label="Send Us A Mail" onClick={() => console.log("Clicked")} bgColor="bg-gradient-to-r from-green-400 to-blue-500" hoverBg="bg-gradient-to-r from-blue-600 to-green-600" iconBg="bg-white" iconColor="text-white" hoverIconColor="text-green-500" />
+            </div>
+          </div>
+        </div>
+        <div className="pt-8 text-center text-xs text-gray-500 md:text-left">&copy; {new Date().getFullYear()} Revival Center International. All Rights Reserved.</div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
