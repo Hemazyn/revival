@@ -2,8 +2,6 @@ import { Link } from "react-scroll";
 import { About, Button, Footer, Header, Main, Programs, Pastorate, Support } from "../components";
 import { iconMoveRight } from "../assets";
 
-// CLOUDINARY_URL=cloudinary://243333856748598:aXVGJOPQWUdm8FKBAEt6q6lj8v8@dihhljibk
-
 const Home = () => {
   return (
     <>
